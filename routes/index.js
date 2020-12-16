@@ -7,4 +7,7 @@ const home_controller = require("../controller/home_controller");
 // access home
 router.get("/home", home_controller.home);
 
+// when ever request is for users
+router.use("/user", require("./user"));
+
 module.exports = router;
