@@ -3,9 +3,13 @@ const express = require("express");
 const app = express();
 
 const port = 8000;
+const expressLayouts = require("express-ejs-layouts");
+app.use(expressLayouts);
 // Use express-roueter// routes
 app.use("/", require("./routes"));
-
+app.set("view engine", "ejs");
+app.set("views", "./views");
+// app.set("views",require(pat))
 app.get("/", function (req, res) {
   res.end("Hello");
 });
