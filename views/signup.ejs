@@ -1,32 +1,14 @@
-<h1>Welcome Sign Up Here</h1>
-<form method="post" action="/users/crete">
-  <label for="email">First Name</label>
-  <input type="text" name="Email" placeholder="First Name" value="" required />
-  <label for="email">Last Name</label>
-  <input
-    type="text"
-    name="Email"
-    placeholder="last name"
-    value=""
-    required
-  /><br />
-  <label for="email">Email</label>
-  <input type="text" name="Email" placeholder="email@gmail.com" required />
-  <label for="password">Password</label>
+<h1>Sign Up</h1>
+
+<form action="/user/create" method="POST">
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <input type="password" name="password" placeholder="Password" required />
   <input
     type="password"
-    name="Password"
-    placeholder="Password"
-    required
-  /><br />
-  <label for="">Confirm Password</label>
-  <input
-    type="password"
-    name="ConfirmPassword"
+    name="confirm_password"
     placeholder="Confirm Password"
     required
   />
-  <label for="phone">Phone Number</label>
-  <input type="number" name="Phone" placeholder="phone number" required /><br />
-  <input type="submit" name="registration" />
+  <input type="submit" value="Sign Up" />
 </form>
