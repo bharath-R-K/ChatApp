@@ -2,7 +2,9 @@
 const User = require("../modules/user");
 
 module.exports.profile = function (req, res) {
-  return res.end("<h1>User Profile</h1>");
+  return res.render("profile", {
+    title: "Profile",
+  });
 };
 
 module.exports.friends = function (req, res) {
@@ -11,11 +13,17 @@ module.exports.friends = function (req, res) {
   });
 };
 module.exports.signin = function (req, res) {
+  if (req.isAuthenticated()) {
+    return res.redirect("/user/profile");
+  }
   return res.render("signin", {
     title: "ChatApp || Signin",
   });
 };
 module.exports.signup = function (req, res) {
+  if (req.isAuthenticated()) {
+    return res.redirect("/user/profile");
+  }
   return res.render("signup", {
     title: "ChatApp , Chat with the World",
   });
@@ -29,14 +37,14 @@ module.exports.create = function (req, res) {
 
   User.findOne({ email: req.body.email }, function (err, user) {
     if (err) {
-      console.log("error in finding user in signing up");
+      console.log("error in finding user email while signing up");
       return;
     }
 
     if (!user) {
       User.create(req.body, function (err, user) {
         if (err) {
-          console.log("error in creating user while signing up");
+          console.log("error while signin");
           return;
         }
 
@@ -49,5 +57,5 @@ module.exports.create = function (req, res) {
 };
 
 module.exports.createSession = function (req, res) {
-  // To do later
+  return res.redirect("/user/profile");
 };
