@@ -13,6 +13,8 @@ const passport = require("passport");
 
 const passportLocal = require("./config/passport-local-strategy");
 
+const MongoStore = require("connect-mongo")(session);
+
 app.use(express.urlencoded());
 app.use(cookieParser());
 
@@ -29,7 +31,7 @@ app.use(expressLayouts);
 app.set("view engine", "ejs");
 app.set("views", "./views");
 // app.set("views",require(path----))
-
+// mongo store is used to store session cookie in the db
 app.use(
   session({
     name: "ChatApp",
@@ -40,6 +42,17 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 100,
     },
+
+    store: new MongoStore(
+      {
+        mongooseConnection: db,
+        autoremove: "disabled",
+      },
+
+      function (err) {
+        console.log(err || "connect-mongodb setup ok");
+      }
+    ),
   })
 );
 
